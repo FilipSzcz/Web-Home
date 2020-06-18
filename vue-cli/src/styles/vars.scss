@@ -1,0 +1,15 @@
+@mixin max-breakpoint($point) {
+  @media screen and (max-width: $point) {
+    @content;
+  }
+}
+
+//fonts
+$font-main:'Lato',
+sans-serif;
+
+//points
+$point0: 1200px;
+$point1: 780px;
+$point2: 600px;
+$point3: 500px;

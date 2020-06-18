@@ -1,0 +1,727 @@
+/**
+ * Owl Carousel v2.3.4
+ * Copyright 2013-2018 David Deutsch
+ * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
+ */
+.owl-container {
+  // height: 60vh;
+  // padding-top: 100px;
+  padding-bottom: 50px;
+  background-color: #fff;
+}
+
+.owl-carousel,
+.owl-carousel .owl-item {
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+
+.owl-carousel {
+  display: block;
+  width: 100%;
+  margin-bottom: 0px;
+  z-index: 1;
+}
+
+.owl-carousel .owl-stage {
+  position: relative;
+  -ms-touch-action: pan-Y;
+  touch-action: manipulation;
+  -moz-backface-visibility: hidden;
+}
+
+.owl-carousel .owl-stage:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.owl-carousel .owl-stage-outer {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.owl-carousel .owl-item,
+.owl-carousel .owl-wrapper {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+}
+
+.owl-carousel .owl-item {
+  min-height: 1px;
+  float: left;
+  -webkit-backface-visibility: hidden;
+  -webkit-touch-callout: none;
+}
+
+.owl-carousel .owl-item img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+}
+
+.owl-carousel .owl-dots.disabled,
+.owl-carousel .owl-nav.disabled {
+  // display: none;
+}
+
+.no-js .owl-carousel,
+.owl-carousel.owl-loaded {
+  display: block;
+}
+
+.owl-carousel .owl-dot,
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-nav .owl-prev {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel button.owl-dot {
+  background: 0 0;
+  color: inherit;
+  border: none;
+  padding: 0 !important;
+  font: inherit;
+}
+
+.owl-carousel.owl-loading {
+  opacity: 0;
+  display: block;
+}
+
+.owl-carousel.owl-hidden {
+  opacity: 0;
+}
+
+.owl-carousel.owl-refresh .owl-item {
+  visibility: hidden;
+}
+
+.owl-carousel.owl-drag .owl-item {
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.owl-carousel.owl-grab {
+  cursor: move;
+  cursor: grab;
+}
+
+.owl-carousel.owl-rtl {
+  direction: rtl;
+}
+
+.owl-carousel.owl-rtl .owl-item {
+  float: right;
+}
+
+.owl-carousel .animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.owl-carousel .owl-animated-in {
+  z-index: 0;
+}
+
+.owl-carousel .owl-animated-out {
+  z-index: 1;
+}
+
+.owl-carousel .owl-item .owl-lazy {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.owl-carousel .owl-item .owl-lazy:not([src]),
+.owl-carousel .owl-item .owl-lazy[src^=""] {
+  max-height: 0;
+}
+
+.owl-carousel .owl-item img.owl-lazy {
+  transform-style: preserve-3d;
+}
+
+/**
+      * Owl Carousel v2.3.4
+      * Copyright 2013-2018 David Deutsch
+      * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
+      */
+.owl-theme .owl-dots,
+.owl-theme .owl-nav {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.owl-theme .owl-nav {
+  margin-top: 10px;
+}
+
+.owl-theme .owl-nav [class*="owl-"] {
+  color: #fff;
+  font-size: 14px;
+  margin: 5px;
+  padding: 5px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: #333;
+  }
+}
+
+.owl-theme .owl-nav .disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.owl-theme .owl-nav.disabled+.owl-dots {
+  margin-top: 10px;
+}
+
+.owl-theme .owl-dots .owl-dot {
+  display: inline-block;
+  zoom: 1;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+  width: 10px;
+  height: 10px;
+  margin: 5px 7px;
+  background: #d6d6d6;
+  display: block;
+  -webkit-backface-visibility: visible;
+  transition: opacity 0.2s ease;
+  border-radius: 30px;
+}
+
+.owl-item .owl-img {
+  position: relative;
+  // padding-top: calc(128%);
+  // padding-top: calc(108%);
+
+}
+
+.owl-item .item img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scale(1);
+  transition: all 500ms ease;
+  // outline: 10px solid #fff;
+}
+
+.owl-item.center {
+  z-index: 3;
+}
+
+.owl-stage-outer {
+  overflow: visible !important;
+}
+
+.owl-dots {
+  display: none;
+}
+
+.owl-theme .owl-nav {
+  margin-top: 0px;
+  position: absolute;
+  width: 27%;
+  height: 0%;
+  margin: 0px auto;
+  left: 0;
+  right: 0;
+  top: 220px;
+
+  @include max-breakpoint($point2 + 100) {
+    top: 150px;
+  }
+
+  @include max-breakpoint($point3) {
+    width: 100%;
+    top: 200px;
+  }
+
+  .owl-prev,
+  .owl-next {
+    cursor: pointer;
+    transition: all 200ms ease;
+    height: 46px;
+    width: 68px;
+    background-color: #009400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    padding: 0;
+    outline: none;
+    border-top-right-radius: 23px;
+    border-bottom-right-radius: 23px;
+
+    // @include max-breakpoint($point3) {
+    //   height: 58px;
+    //   width: 58px;
+    // }
+
+
+
+    &:before {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 70%;
+      transform: translate(-53%, -50%);
+      transition: all 0.2s ease;
+      height: 100%;
+      width: 100%;
+      background-image: url("http://solgaz-2020.wpcdn.pl/img/arrow-owl.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-size: auto;
+      z-index: 5;
+    }
+
+    // &:after {
+    //   display: block;
+    //   content: "";
+    //   position: absolute;
+    //   top: 50%;
+    //   left: 50%;
+    //   transform: translate(-50%, -50%);
+    //   border-radius: 50%;
+    //   transition: all 0.2s ease;
+    //   height: 59px;
+    //   width: 59px;
+    //   // background-image: url("http://fisher-price-2019.wpcdn.pl/img/Ellipse4.png");
+    //   // background-position: center;
+    //   // background-size: contain;
+    //   // background-repeat: no-repeat;
+    //   background-color: white;
+    //   z-index: 2;
+
+    //   @include max-breakpoint($point3) {
+    //     height: 48px;
+    //     width: 48px;
+    //   }
+    // }
+
+
+    span {
+      display: none;
+    }
+
+  }
+
+  .owl-prev {
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  .owl-next {
+    right: 0;
+    transform: translate(50%, -50%) scaleX(-1);
+  }
+}
+
+.owl-desc {
+  // position: absolute;
+  //transform: translateY(100%);
+  opacity: 0;
+  // transition: opacity 400ms ease 200ms;
+  position: relative;
+  letter-spacing: 1px;
+  padding: 12px 0 12px;
+  box-sizing: border-box;
+  //   color: $text-color;
+
+  h4 {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 19px;
+    font-weight: 600;
+    // transition: all 0.3s ease-in;
+    // color: $main-color;
+    // font-family: $font-main;
+    padding: 0;
+  }
+
+  p {
+    text-align: left;
+    // transition: all .3s ease-in;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: normal;
+    width: 100%;
+    color: #fff;
+    // font-family: $font-main;
+    padding: 0;
+  }
+}
+
+.center .owl-desc {
+  opacity: 1;
+
+  h4 {
+    text-transform: uppercase;
+    font-size: 12px;
+    // font-family: $font-author;
+    padding-bottom: 0;
+  }
+}
+
+// 3 ITEMS
+
+.owl-carousel.owl-3-item.owl-theme:not(.owl-desc-aside) .owl-item.center.active div.item .owl-desc,
+.owl-carousel.owl-3-item.owl-theme:not(.owl-desc-aside) .owl-item .owl-desc {
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.owl-carousel .owl-nav.disabled {
+  display: block !important;
+}
+
+.owl-carousel.owl-3-item.owl-theme:not(.owl-desc-aside) {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  width: 100%;
+  background-color: #fff;
+
+  .owl-stage-outer {
+    overflow: hidden !important;
+  }
+
+  @include max-breakpoint($point3) {
+    margin-bottom: 12px;
+  }
+
+  .owl-nav {
+    width: 43%;
+    top: 265px;
+
+    @include max-breakpoint(1485px) {
+      top: 17.5vw;
+    }
+
+    @include max-breakpoint(1380px) {
+      width: 51%;
+    }
+
+    @include max-breakpoint(1220px) {
+      width: 60%;
+    }
+
+    @include max-breakpoint(914px) {
+      top: 160px;
+    }
+
+    @include max-breakpoint(900px) {
+      width: 68%;
+    }
+
+    @include max-breakpoint(541px) {
+      width: 85%;
+    }
+  }
+
+  .owl-item {
+    height: 100%;
+    filter: brightness(0.6);
+  }
+
+  .owl-item .owl-img {
+    height: 35vw;
+    max-height: 560px;
+    min-height: 320px;
+  }
+
+  .owl-item.center.active {
+    filter: brightness(1);
+
+    div.item {
+      div.owl-img {
+        img {
+          //   @include max-breakpoint($point4) {
+          //     width: 100%;
+          //   }
+        }
+      }
+
+      .owl-desc {
+        padding: 12px;
+      }
+    }
+  }
+}
+
+// DESC-ASIDE
+
+.owl-desc-aside.owl-carousel.owl-3-item.owl-theme {
+  max-height: 850px;
+  overflow: hidden;
+  margin-bottom: 0px;
+  margin-top: 20px;
+
+  // &:after {
+  //   content: "";
+  //   display: block;
+  //   height: 210px;
+  //   background-image: url("http://tenaproskin-2019.wpcdn.pl/assets/owl-bg.png");
+  //   background-size: cover;
+
+  //   @include max-breakpoint($point2) {
+  //     height: 250px;
+  //   }
+
+  //   @include max-breakpoint($point3) {
+  //     height: 285px;
+  //   }
+
+  //   @include max-breakpoint(410px) {
+  //     height: 335px;
+  //   }
+  // }
+
+  .owl-stage-outer {
+    height: 100%;
+
+    .owl-stage {
+      height: 100%;
+
+      .owl-item {
+        height: 100%;
+        filter: brightness(0.6);
+      }
+
+      .owl-item .owl-img {
+        padding-top: 0;
+        // height: 40vw;
+        height: 500px;
+        max-height: 700px;
+        min-height: 320px;
+        width: 100%;
+        margin-left: 50%;
+
+        @include max-breakpoint(600px) {
+          height: 48vw;
+        }
+      }
+
+      .owl-item.active .owl-img,
+      .owl-item.center .owl-img {
+        margin-left: 0;
+        margin-right: 50%;
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          height: 101%;
+          width: 10px;
+          background-color: #f4f4f4;
+          right: -10px;
+
+          @include max-breakpoint(900px) {
+            display: none;
+          }
+        }
+
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          height: 101%;
+          width: 10px;
+          background-color: #f4f4f4;
+          left: -10px;
+
+          @include max-breakpoint(900px) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .owl-desc {
+      display: none;
+      position: relative;
+      opacity: 0;
+      right: 0;
+      z-index: 1;
+      box-sizing: border-box;
+      width: 100%;
+      margin-top: 10px;
+
+      &::after {
+        content: "";
+        display: block;
+        height: 10px;
+        width: 100vw;
+        position: absolute;
+        background-color: #fff;
+        top: -10px;
+        left: -25%;
+      }
+
+      h4 {
+        font-family: "Lato", sans-serif;
+        position: relative;
+        color: #fff;
+        text-transform: none;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: bold;
+        padding: 10px 0 15px 0;
+        letter-spacing: normal;
+
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 240px;
+          height: 4px;
+          background-image: url('http://solgaz-2020.wpcdn.pl/img/deko-owl.png');
+          bottom: 0;
+        }
+
+        @include max-breakpoint(980px) {
+          padding-bottom: 5px;
+          font-size: 16px;
+          padding-top: 0;
+          // margin-top: 20px;
+        }
+      }
+
+      p {
+        // font-family: $font-main;
+        text-align: left;
+        position: relative;
+        font-size: 16px;
+        padding-bottom: 15px;
+        letter-spacing: normal;
+        line-height: 28px;
+
+        // @include max-breakpoint(980px) {
+        //   font-size: 14px;
+        // }
+
+        // @include max-breakpoint(420px) {
+        //   font-size: 12px;
+        // }
+
+        // @include max-breakpoint(370px) {
+        //   font-size: 9px;
+        // }
+      }
+
+      &:before {
+        display: block;
+        position: absolute;
+        content: "";
+        left: -21vw;
+        height: 100%;
+        width: 200vw;
+        bottom: 0;
+        z-index: -1;
+        background-color: #333;
+      }
+
+      @include max-breakpoint(980px) {
+        // padding: 0 0 0 15px;
+        padding-left: 0;
+        // display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      @include max-breakpoint(541px) {
+        padding: 10px 20px;
+      }
+    }
+
+    .owl-item.center.active {
+      filter: brightness(1);
+
+      div.item {
+        .owl-desc {
+          opacity: 1;
+          display: block;
+        }
+      }
+    }
+  }
+
+  .owl-nav {
+    top: 250px;
+    width: calc(100% - 55px);
+
+    // @include max-breakpoint(1600px) {
+    //   width: 54.8%;
+    // }
+
+    // @include max-breakpoint(1350px) {
+    //   width: 54.5%;
+    // }
+
+    // @include max-breakpoint(900px) {
+    //   width: 59%;
+    // }
+
+    // @include max-breakpoint(810px) {
+    //   width: 60.0%;
+    // }
+
+    @include max-breakpoint(600px) {
+      top: 27vw;
+    }
+
+    @include max-breakpoint(541px) {
+      width: calc(100% - 55px);
+      top: 31vw;
+    }
+
+    @include max-breakpoint(400px) {
+      top: 40vw;
+    }
+
+
+    // @include max-breakpoint(540px) {
+    //   width: 84.5%;
+    // }
+  }
+}
+
+
+.owl-nav {
+  position: absolute;
+  top: 0;
+}
