@@ -1,10 +1,10 @@
 ### Instalacja 
 
-npm i 
+npm install
 
 cd vue-cli
 
-npm i
+npm install
 
 cd ..
 
