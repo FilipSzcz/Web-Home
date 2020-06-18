@@ -1,13 +1,13 @@
 ### Instalacja 
 
-$ npm i 
+npm i 
 
-$ cd vue-cli
+cd vue-cli
 
-$ npm i
+npm i
 
-$ cd ..
+cd ..
 
 ### Uruchomienie 
 
-$ npm run dev
+npm run dev
