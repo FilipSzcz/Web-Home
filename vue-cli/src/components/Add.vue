@@ -101,7 +101,7 @@
           <input class="add-box__input add-box__input--file" type="file" @change="onFileSelected" />
         </div>
       </div>
-      <button class="add-box__btn" @click="addProduct">Add</button>
+      <button class="add-box__btn" @click="addProduct">Dodaj</button>
     </div>
   </div>
 </template>

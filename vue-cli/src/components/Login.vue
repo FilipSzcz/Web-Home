@@ -57,9 +57,11 @@ export default {
             window.location.href = "http://localhost:8080/#/panel";
             vn.$store.state.userData = response.data;
             vn.$store.state.userId = response.data._id;
+            vn.$store.state.userName = response.data.name;
             vn.$store.state.isUserLoggedIn = true;
             localStorage.setItem("isUserLoggedIn", "true");
             localStorage.setItem("userId", response.data._id);
+            localStorage.setItem("userName", response.data.name);
           } else if (!response.data) {
             alert("Błędne hasło lub email");
           }

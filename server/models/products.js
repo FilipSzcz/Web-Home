@@ -14,6 +14,7 @@ var productsSchema = new Schema({
     desc: String,
     author: String,
     authorId: String,
+    comments: Array,
     file: [String],
     term: {
         date: String,

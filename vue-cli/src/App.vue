@@ -12,6 +12,7 @@ export default {
     if (localStorage.isUserLoggedIn) {
       this.$store.state.isUserLoggedIn = true;
       this.$store.state.userId = localStorage.userId;
+      this.$store.state.userName = localStorage.userName;
     }
   }
 };

@@ -26,6 +26,15 @@ Products.find({}, (err, data) => {
     products = data;
 })
 
+setInterval(() => {
+    Products.find({}, (err, data) => {
+        products = data;
+    })
+    router.get('/', (req, res) => {
+        res.send(products);
+    })
+}, 100)
+
 router.post('/upload', upload.single('file'), (req, res) => {
     filesName.push(`http://localhost:5000/products/upload/${req.file.filename}`);
 })
@@ -33,9 +42,9 @@ router.get('/upload/:file', (req, res) => {
     res.sendFile(path.join(__dirname, '../public', '/uploads', req.params.file));
 })
 
-router.get('/', (req, res) => {
-    res.send(products);
-})
+// router.get('/', (req, res) => {
+//     res.send(products);
+// })
 
 router.post('/', (req, res) => {
     let dateObj = new Date();
@@ -78,6 +87,45 @@ router.post('/', (req, res) => {
         })
     })
     res.send(true);
+})
+
+router.post('/comments', (req, res) => {
+
+    let dateObj = new Date();
+    let month = dateObj.getUTCMonth() + 1;
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
+    let hour = dateObj.getHours();
+    let minute = dateObj.getMinutes();
+
+    day < 10 ? day = `0${day}` : day;
+    month < 10 ? month = `0${month}` : month;
+    hour < 10 ? hours = `0${hour}` : hour;
+    minute < 10 ? minute = `0${minute}` : minute;
+    let date = `${day}.${month}.${year}`;
+    let time = `${hour}:${minute}`;
+
+    let check = {
+        date: date,
+        time: time,
+        author: req.body.author,
+        desc: req.body.desc
+    };
+
+    Products.updateOne({
+        _id: req.body.productId
+    }, {
+        $push: {
+            comments: check
+        }
+    }, function (err, res) {
+        if (err) throw err;
+    });
+
+    Products.find({}, (err, data) => {
+        products = data;
+    })
+    res.send('ok')
 })
 
 module.exports = router;
