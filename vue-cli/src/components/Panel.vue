@@ -1,7 +1,7 @@
 <template>
   <div class="panel" v-if="this.$store.state.isUserLoggedIn">
     <app-header></app-header>
-    <div class="wrapper">
+    <div class="panel__wrapper">
       <div class="panel__content">
         <h1 class="panel__title">Twoje ogłoszenia</h1>
         <div class="added__list">
@@ -69,8 +69,15 @@ export default {
 
 <style lang="scss" scoped>
 @import "../styles/vars.scss";
-
-.wrapper {
+.panel {
+  min-height: 100vh;
+  background-image: url("../assets/bg-sg2.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: 150px;
+  min-height: 100vh;
+}
+.panel__wrapper {
   max-width: 1300px;
   margin: 0 auto;
 }
@@ -78,6 +85,7 @@ export default {
   text-align: center;
   margin-top: 40px;
   text-transform: uppercase;
+  color: white;
 }
 .added__list {
   position: relative;
@@ -89,6 +97,7 @@ export default {
   border-radius: 5px;
   margin-bottom: 20px;
   min-height: 300px;
+  background-color: rgba(255, 255, 255, 0.9);
   ul {
     list-style: none;
 
