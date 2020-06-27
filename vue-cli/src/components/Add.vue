@@ -263,6 +263,13 @@ export default {
 
 <style lang="scss">
 @import "../styles/vars.scss";
+.add {
+  background-image: url("../assets/bg-sg2.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: 150px;
+  min-height: 100vh;
+}
 .add-box {
   margin: 0 auto;
   margin-top: 100px;
