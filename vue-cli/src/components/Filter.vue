@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <app-header></app-header>
-    <div class="filter">
+    <!-- <div class="filter">
       <div class="filter__element filter__element-location">
         <p class="filter__category">Lokalizacja</p>
         <input class="text" type="text" list="city" v-model="city" placeholder="Miasto" />
@@ -47,17 +47,12 @@
           </span>
         </div>
       </div>
-      <router-link
-        v-if="this.city || this.district || this.minPrice || this.maxPrice || this.minSurface || this.maxSurface"
-        :to="`/filter`"
-      >
-        <button class="filter__submit" @click="search">Szukaj</button>
-      </router-link>
-      <button v-else class="filter__submit" @click="search">Szukaj</button>
-    </div>
+      <button class="filter__submit" @click="search">Szukaj</button>
+    </div>-->
     <div class="products">
       <h1 class="products__title">Ogłoszenia</h1>
       <div class="products__list">
+        <router-link class="product__back-btn" to="/">< powrót do wszystkich ogłoszeń</router-link>
         <ul>
           <li v-for="(product,i) in products" :key="i" class="products__product">
             <div class="products__product__img">
@@ -129,13 +124,12 @@ export default {
   data: function() {
     return {
       products: [],
-      city: "",
+      city: this.$store.state.filterCity,
       district: "",
       minPrice: "",
       maxPrice: "",
       minSurface: "",
       maxSurface: "",
-      filterRoute: [],
       cityList: ["Gdańsk", "Gdynia", "Sopot"],
       gdansk: [
         "Wyspa Sobieszewska",
@@ -203,89 +197,56 @@ export default {
       ]
     };
   },
-  methods: {
-    search() {
-      this.$store.state.filterMinPrice = false;
-      this.$store.state.filterMaxPrice = false;
-      this.$store.state.filterMinSurface = false;
-      this.$store.state.filterMaxSurface = false;
-      this.$store.state.filterCity = false;
-      this.$store.state.filterDistrict = false;
-      if (this.minPrice) {
-        this.$store.state.filterMinPrice = this.minPrice * 1;
-      }
-      if (this.maxPrice) {
-        this.$store.state.filterMaxPrice = this.maxPrice * 1;
-      }
-      if (this.minSurface) {
-        this.$store.state.filterMinSurface = this.minSurface * 1;
-      }
-      if (this.maxSurface) {
-        this.$store.state.filterMaxSurface = this.maxSurface * 1;
-      }
-      if (this.city) {
-        this.$store.state.filterCity = this.city;
-      }
-      if (this.district) {
-        this.$store.state.filterDistrict = this.district;
-      }
-      // if (this.minPrice) {
-      //   this.filterRoute.push(this.minPrice);
-      // } else {
-      //   this.filterRoute.push(false);
-      // }
-      // if (this.maxPrice) {
-      //   this.filterRoute.push(this.maxPrice);
-      // } else {
-      //   this.filterRoute.push(false);
-      // }
-      // if (this.minSurface) {
-      //   this.filterRoute.push(this.minSurface);
-      // } else {
-      //   this.filterRoute.push(false);
-      // }
-      // if (this.maxSurface) {
-      //   this.filterRoute.push(this.maxSurface);
-      // } else {
-      //   this.filterRoute.push(false);
-      // }
-      // if (this.city) {
-      //   let index = this.cityList.findIndex(element => element === this.city);
-      //   this.filterRoute.push(index);
-      // } else {
-      //   this.filterRoute.push(false);
-      // }
-      // if (this.district) {
-      //   let index = "";
-      //   if (this.city === "Gdańsk") {
-      //     index = this.gdansk.findIndex(element => element === this.district);
-      //   } else if (this.city === "Gdynia") {
-      //     index = this.gdynia.findIndex(element => element === this.district);
-      //   } else if (this.city === "Sopot") {
-      //     index = this.sopot.findIndex(element => element === this.district);
-      //   }
-      //   this.filterRoute.push(index);
-      // } else {
-      //   this.filterRoute.push(false);
-      // }
-      // const list = this.filterRoute.join("!");
-      // let correctList = list.replace(/\s/g, "");
-      // location.replace("http://localhost:8080/#/filter/" + correctList);
-    }
-  },
   created() {
     const vn = this;
     axios.get("http://localhost:5000/products").then(response => {
       for (let i = 0; i < response.data.length; i++) {
-        vn.products.unshift(response.data[i]);
+        console.log(response.data[i].price + 1);
+        console.log(vn.$store.filterminSurface);
+        let correct = true;
+        if (
+          vn.$store.state.filterMinPrice &&
+          vn.$store.state.filterMinPrice > response.data[i].price
+        ) {
+          correct = false;
+        }
+        if (
+          vn.$store.state.filterMaxPrice &&
+          vn.$store.state.filterMaxPrice < response.data[i].price
+        ) {
+          correct = false;
+        }
+        if (
+          vn.$store.state.filterMinSurface &&
+          vn.$store.state.filterMinSurface > response.data[i].surface
+        ) {
+          correct = false;
+        }
+        if (
+          vn.$store.state.filterMaxSurface &&
+          vn.$store.state.filterMaxSurface < response.data[i].surface
+        ) {
+          correct = false;
+        }
+        if (
+          vn.$store.state.filterCity &&
+          vn.$store.state.filterCity !== response.data[i].city
+        ) {
+          correct = false;
+        }
+        if (
+          vn.$store.state.filterDistrict &&
+          vn.$store.state.filterDistrict !== response.data[i].district
+        ) {
+          correct = false;
+        }
+        if (correct === true) {
+          vn.products.unshift(response.data[i]);
+        }
+        // console.log(correct);
         response.data[i];
       }
     });
-  },
-  mounted() {
-    this.gdansk = this.gdansk.sort();
-    this.gdynia = this.gdynia.sort();
-    this.sopot = this.sopot.sort();
   }
 };
 </script>
@@ -300,6 +261,12 @@ export default {
   padding-bottom: 150px;
   min-height: 100vh;
 }
+.product__back-btn {
+  display: inline-block;
+  color: rgb(0, 0, 110);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
 .filter {
   max-width: 1000px;
   margin: 0 auto;
@@ -312,13 +279,9 @@ export default {
   @include max-breakpoint(1030px) {
     width: 90%;
   }
-  @include max-breakpoint(550px) {
-    padding-bottom: 55px;
-  }
   .filter__element {
     display: flex;
     margin-top: 15px;
-    flex-wrap: wrap;
     &.filter__element-location {
       border-bottom: 1px solid rgb(136, 136, 136);
       padding-bottom: 10px;
@@ -348,7 +311,6 @@ export default {
       padding: 5px 5px;
       border-radius: 5px;
       border: none;
-      margin-bottom: 5px;
     }
     input.number {
       width: 90px;
@@ -377,9 +339,7 @@ export default {
     letter-spacing: 1px;
     font-size: 14px;
     transition: 0.5s;
-    @include max-breakpoint(550px) {
-      bottom: 10px;
-    }
+
     &:hover {
       transform: scale(1.1) translateX(-50%);
     }

@@ -10,7 +10,13 @@ export default store = new Vuex.Store({
     user: null,
     isUserLoggedIn: false,
     userName: '',
-    userId: ''
+    userId: '',
+    filterMinPrice: false,
+    filterMaxPrice: false,
+    filterMinSurface: false,
+    filterMaxSurface: false,
+    filterCity: false,
+    filterDistrict: false
   },
   mutation: {
     setToken(state, token) {

@@ -385,11 +385,12 @@ export default {
     margin-bottom: 15px;
     font-style: italic;
     font-size: 18px;
+    color: grey;
   }
   .procuct__comments-element {
     margin-bottom: 10px;
     padding: 5px 0;
-    border-top: 1px solid black;
+    border-top: 1px solid #999;
     .date-com {
       font-size: 12px;
       color: #666;

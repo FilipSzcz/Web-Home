@@ -148,7 +148,8 @@ export default {
         "Morena",
         "Osowa",
         "Oliwa",
-        "Wrzeszcz"
+        "Wrzeszcz",
+        "Żabianka"
       ],
       gdynia: [
         "Kamienna Góra",
