@@ -1,58 +1,11 @@
 <template>
   <div class="main">
     <app-header></app-header>
-    <!-- <div class="filter">
-      <div class="filter__element filter__element-location">
-        <p class="filter__category">Lokalizacja</p>
-        <input class="text" type="text" list="city" v-model="city" placeholder="Miasto" />
-        <datalist id="city">
-          <option v-for="(city,index) in this.cityList" :key="index" :value="city"></option>
-        </datalist>
-        <input class="text" type="text" list="district" v-model="district" placeholder="Dzielnica" />
-        <datalist v-if="city==='Gdańsk'" id="district">
-          <option v-for="(d,i) in this.gdansk " :value="d" :key="i"></option>
-        </datalist>
-        <datalist v-else-if="city==='Sopot'" id="district">
-          <option v-for="(d,i) in this.sopot " :value="d" :key="i"></option>
-        </datalist>
-        <datalist v-else-if="city==='Gdynia'" id="district">
-          <option v-for="(d,i) in this.gdynia " :value="d" :key="i"></option>
-        </datalist>
-      </div>
-      <div class="filter__element">
-        <p class="filter__category">Cena</p>
-        <div class="filter__category-container">
-          <input class="number" type="number" v-model="minPrice" placeholder="Od" />
-          <span>zł</span>
-        </div>
-        <div class="filter__category-container">
-          <input class="number" type="number" v-model="maxPrice" placeholder="Do" />
-          <span>zł</span>
-        </div>
-      </div>
-      <div class="filter__element">
-        <p class="filter__category">Metraż</p>
-        <div class="filter__category-container">
-          <input class="number size" type="number" v-model="minSurface" placeholder="Od" />
-          <span>
-            m
-            <sup>2</sup>
-          </span>
-        </div>
-        <div class="filter__category-container">
-          <input class="number size" type="number" v-model="maxSurface" placeholder="Do" />
-          <span>
-            m
-            <sup>2</sup>
-          </span>
-        </div>
-      </div>
-      <button class="filter__submit" @click="search">Szukaj</button>
-    </div>-->
     <div class="products">
-      <h1 class="products__title">Ogłoszenia</h1>
+      <h1 v-if="this.products.length > 0" class="products__title">Ogłoszenia</h1>
       <div class="products__list">
         <router-link class="product__back-btn" to="/">< powrót do wszystkich ogłoszeń</router-link>
+        <h2 v-if="this.products.length === 0" class="product__none">Nie znaleziono ogłoszeń</h2>
         <ul>
           <li v-for="(product,i) in products" :key="i" class="products__product">
             <div class="products__product__img">
@@ -201,8 +154,6 @@ export default {
     const vn = this;
     axios.get("http://localhost:5000/products").then(response => {
       for (let i = 0; i < response.data.length; i++) {
-        console.log(response.data[i].price + 1);
-        console.log(vn.$store.filterminSurface);
         let correct = true;
         if (
           vn.$store.state.filterMinPrice &&
@@ -267,83 +218,10 @@ export default {
   margin-bottom: 20px;
   font-weight: bold;
 }
-.filter {
-  max-width: 1000px;
-  margin: 0 auto;
+.product__none {
+  text-align: center;
+  color: white;
   margin-top: 50px;
-  padding: 20px 20px;
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  @include max-breakpoint(1030px) {
-    width: 90%;
-  }
-  .filter__element {
-    display: flex;
-    margin-top: 15px;
-    &.filter__element-location {
-      border-bottom: 1px solid rgb(136, 136, 136);
-      padding-bottom: 10px;
-      margin-top: 0;
-    }
-    .filter__category-container {
-      position: relative;
-      span {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 14px;
-        color: #999;
-        sup {
-          margin-left: -3px;
-        }
-      }
-    }
-    .filter__category {
-      width: 100px;
-      color: white;
-      letter-spacing: 0.5px;
-    }
-    input {
-      margin: 0 10px;
-      padding: 5px 5px;
-      border-radius: 5px;
-      border: none;
-    }
-    input.number {
-      width: 90px;
-      padding-right: 20px;
-      &.size {
-        & + span {
-          margin-right: -5px;
-        }
-      }
-    }
-  }
-  .filter__submit {
-    position: absolute;
-    right: 0;
-    bottom: 15px;
-    transform: translateX(-50%);
-    background-color: #009400;
-    border: none;
-    padding: 5px 15px;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 300;
-    letter-spacing: 1px;
-    font-size: 14px;
-    transition: 0.5s;
-
-    &:hover {
-      transform: scale(1.1) translateX(-50%);
-    }
-  }
 }
 .products__title {
   text-align: center;
