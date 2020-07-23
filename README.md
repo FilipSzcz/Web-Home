@@ -1,3 +1,5 @@
+# Strona internetowa stworzona do dodawania i wyszukiwania ogłoszeń mieszkaniowych w Trójmieście.
+
 ### Instalacja 
 ```sh
 $ npm install
